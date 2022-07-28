@@ -122,6 +122,7 @@ contract ETHERC20Interchange is Initializable {
     function interchange_eth_token(uint256 interchangeId) payable external {
         require(interchangeId <= interchangeCounter.current(), "interchangeId not exist");
         Interchange storage data = allInterchanges[interchangeId];
+        require(data.interchange_type == 1, "interchangeId err");
         require(data.from_address != address(0), "interchangeId completed");
         require(msg.sender == data.to_address, "interchangeId error");
         require(msg.value >= data.to_amount, "amount < expect_amount");
@@ -134,6 +135,7 @@ contract ETHERC20Interchange is Initializable {
     function interchange_token_eth(uint256 interchangeId, uint256 amount) payable external {
         require(interchangeId <= interchangeCounter.current(), "interchangeId not exist");
         Interchange storage data = allInterchanges[interchangeId];
+        require(data.interchange_type == 0, "interchangeId err");
         require(data.from_address != address(0), "interchangeId completed");
         require(msg.sender == data.to_address, "interchangeId error");
         require(amount >= data.to_amount, "amount < expect_amount");
