@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
+// 事件例子
 pragma solidity ^0.8.10;
-
 contract Event {
     event Log(string message, uint val);
     event IndexedLog(address indexed sender, uint val);
